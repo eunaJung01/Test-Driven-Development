@@ -1,8 +1,20 @@
 package com.tdd.entity;
 
-public class Money {
+public abstract class Money {
 
     protected int amount;
+
+    public abstract Money times(int multiplier);
+
+    // factory method
+    public static Dollar dollar(int amount) {
+        return new Dollar(amount);
+    }
+
+    // factory method
+    public static Money franc(int amount) {
+        return new Franc(amount);
+    }
 
     @Override
     public boolean equals(Object object) {
