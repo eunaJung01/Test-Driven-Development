@@ -8,19 +8,10 @@ import static org.assertj.core.api.Assertions.*;
 public class MoneyTest {
 
     @Test
-    public void testMultiplication_1() {
+    public void testMultiplication_4() {
         Dollar five = new Dollar(5);
-        five.times(2);
-        assertThat(10).isEqualTo(five.amount);
-    }
-
-    @Test
-    public void testMultiplication_2() {
-        Dollar five = new Dollar(5);
-        Dollar product = five.times(2);
-        assertThat(10).isEqualTo(product.amount);
-        product = five.times(3);
-        assertThat(15).isEqualTo(product.amount);
+        assertThat(new Dollar(10)).isEqualTo(five.times(2));
+        assertThat(new Dollar(15)).isEqualTo(five.times(3));
     }
 
     @Test
