@@ -1,5 +1,7 @@
 package com.tdd.entity;
 
+import java.util.Objects;
+
 public class Dollar {
 
     public int amount;
@@ -10,6 +12,12 @@ public class Dollar {
 
     public Dollar times(int multiplier) {
         return new Dollar(amount * multiplier);
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        Dollar dollar = (Dollar) object;
+        return amount == dollar.amount;
     }
 
 }
