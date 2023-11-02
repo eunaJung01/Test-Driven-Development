@@ -3,18 +3,26 @@ package com.tdd.entity;
 public abstract class Money {
 
     protected int amount;
+    protected String currency;
 
-    public abstract Money times(int multiplier);
+    public Money(int amount, String currency) {
+        this.amount = amount;
+        this.currency = currency;
+    }
 
     // factory method
     public static Dollar dollar(int amount) {
-        return new Dollar(amount);
+        return new Dollar(amount, "USD");
     }
 
     // factory method
-    public static Money franc(int amount) {
-        return new Franc(amount);
+    public static Franc franc(int amount) {
+        return new Franc(amount, "CHF");
     }
+
+    public abstract Money times(int multiplier);
+
+    public abstract String currency();
 
     @Override
     public boolean equals(Object object) {
