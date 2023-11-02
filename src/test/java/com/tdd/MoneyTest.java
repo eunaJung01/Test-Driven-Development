@@ -1,5 +1,6 @@
 package com.tdd;
 
+import com.tdd.entity.Franc;
 import com.tdd.entity.Money;
 import org.junit.jupiter.api.Test;
 
@@ -28,6 +29,11 @@ public class MoneyTest {
         Money five = Money.franc(5);
         assertThat(Money.franc(10)).isEqualTo(five.times(2));
         assertThat(Money.franc(15)).isEqualTo(five.times(3));
+    }
+
+    @Test
+    public void testDifferentClassEquality() {
+        assertThat(new Money(10, "CHF")).isEqualTo(new Franc(10, "CHF"));
     }
 
     @Test
