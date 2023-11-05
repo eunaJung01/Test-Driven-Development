@@ -58,14 +58,6 @@ public class MoneyTest {
     }
 
     @Test
-    public void testPlusReturnsSum() {
-        Money five = Money.dollar(5);
-        Expression result = five.plus(five);
-        Sum sum = (Sum) result;
-        assertThat(five).isEqualTo(sum.augend);
-    }
-
-    @Test
     public void testReduceSum() {
         Expression sum = new Sum(Money.dollar(3), Money.dollar(4));
         Bank bank = new Bank();
@@ -78,6 +70,24 @@ public class MoneyTest {
         Bank bank = new Bank();
         Money result = bank.reduce(Money.dollar(1), "USD");
         assertThat(Money.dollar(1)).isEqualTo(result);
+    }
+
+    @Test
+    public void testReduceMoneyDifferentCurrency() {
+        Bank bank = new Bank();
+        bank.addRate("CHF", "USD", 2);
+        Money result = bank.reduce(Money.franc(2), "USD");
+        assertThat(Money.dollar(1)).isEqualTo(result);
+    }
+
+    @Test
+    public void testArrayEquals() {
+        assertThat(new Object[]{"abc"}).isEqualTo(new Object[]{"abc"});
+    }
+
+    @Test
+    public void testIdentityRate() {
+        assertThat(1).isEqualTo(new Bank().rate("USD", "USD"));
     }
 
 }
